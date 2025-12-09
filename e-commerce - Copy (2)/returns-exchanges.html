@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Exchanges - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional inline styles for enhancements */
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .flow-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #ddd;
+        }
+        
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .policy-highlight-box {
+            background: linear-gradient(to right, #f8f9fa, #fff);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interactive-checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .interactive-checklist li {
+            padding: 0.75rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-checklist li:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .checklist-icon {
+            margin-right: 1rem;
+            color: #28a745;
+        }
+        
+        .timeline-visual {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-visual::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .accordion-header {
+            padding: 1.25rem;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+        
+        .accordion-content.active {
+            padding: 1.25rem;
+            max-height: 500px;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-visual::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                text-align: left !important;
+                left: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 10px;
+                right: auto;
+            }
+            
+            .flow-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .flow-step {
+                min-width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo" aria-label="ShopEasy Home">
+                    <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                    ShopEasy
+                </a>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search for products..." aria-label="Search products">
+                    <button id="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <a href="#" id="wishlist-btn" aria-label="Wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count" aria-live="polite">0</span>
+                    </a>
+                    <a href="#" id="cart-btn" class="cart" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" aria-live="polite">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav aria-label="Main Navigation">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Team Wear <i class="fa fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Team Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/team-wear-1.jpg" alt="Team Jerseys">
+                                        <h4>Team Jerseys</h4>
+                                        <p>Premium quality custom jerseys</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/team-wear-2.jpg" alt="Team Shorts">
+                                        <h4>Team Shorts</h4>
+                                        <p>Comfortable and durable shorts</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/team-wear-3.jpg" alt="Team Accessories">
+                                        <h4>Team Accessories</h4>
+                                        <p>Caps, bands, and more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Active Wear <i class="fas fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Active Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/active-wear-1.jpg" alt="Sports Tops">
+                                        <h4>Sports Tops</h4>
+                                        <p>Breathable athletic wear</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/active-wear-2.jpg" alt="Leggings">
+                                        <h4>Leggings & Pants</h4>
+                                        <p>Flexible and comfortable fit</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/active-wear-3.jpg" alt="Activewear Accessories">
+                                        <h4>Accessories</h4>
+                                        <p>Bags, socks, and more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Casual Wear <i class="fas fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Casual Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/casual-wear-1.jpg" alt="T-Shirts">
+                                        <h4>T-Shirts</h4>
+                                        <p>Classic and trendy designs</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/casual-wear-2.jpg" alt="Casual Bottoms">
+                                        <h4>Casual Bottoms</h4>
+                                        <p>Jeans, pants, and shorts</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/casual-wear-3.jpg" alt="Casual Accessories">
+                                        <h4>Accessories</h4>
+                                        <p>Hats, belts, and more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Hunters Wear <i class="fas fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Hunters Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/hunters-wear-1.jpg" alt="Hunting Jackets">
+                                        <h4>Hunting Jackets</h4>
+                                        <p>Durable and weather-resistant</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/hunters-wear-2.jpg" alt="Hunting Pants">
+                                        <h4>Hunting Pants</h4>
+                                        <p>Camouflage and tactical</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/hunters-wear-3.jpg" alt="Hunting Gear">
+                                        <h4>Hunting Gear</h4>
+                                        <p>Boots, vests, and equipment</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="product-details.html"><i class="fas fa-eye"></i> Products</a></li>
+                    <li><a href="checkout.html"><i class="fas fa-shopping-cart"></i> Checkout</a></li>
+                </ul>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-menu-overlay"></div>
+            <div class="mobile-menu-container">
+                <div class="mobile-menu-header">
+                    <h3>Menu</h3>
+                    <button class="mobile-menu-close" aria-label="Close mobile menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mobile-menu-content">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-tshirt"></i> Team Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-shield-alt"></i> Team Jerseys</a>
+                            <a href="#"><i class="fas fa-vest"></i> Team Shorts</a>
+                            <a href="#"><i class="fas fa-hat-cowboy"></i> Team Accessories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-running"></i> Active Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-tshirt"></i> Sports Tops</a>
+                            <a href="#"><i class="fas fa-vest"></i> Leggings & Pants</a>
+                            <a href="#"><i class="fas fa-bag-shopping"></i> Accessories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-user"></i> Casual Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-tshirt"></i> T-Shirts</a>
+                            <a href="#"><i class="fas fa-jeans"></i> Casual Bottoms</a>
+                            <a href="#"><i class="fas fa-hat-cowboy"></i> Accessories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-campground"></i> Hunters Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-vest"></i> Hunting Jackets</a>
+                            <a href="#"><i class="fas fa-jeans"></i> Hunting Pants</a>
+                            <a href="#"><i class="fas fa-boot"></i> Hunting Gear</a>
+                        </div>
+                    </div>
+                    
+                    <a href="product-details.html"><i class="fas fa-eye"></i> Products</a>
+                    <a href="checkout.html"><i class="fas fa-shopping-cart"></i> Checkout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 0; text-align: center;">
+            <div class="container">
+                <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;">Easy Returns & Exchanges</h1>
+                <p class="hero-subtitle" style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem;">
+                    Shop with confidence knowing you're covered by our hassle-free 30-day return policy
+                </p>
+                <div class="hero-stats" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+                    <div class="stat">
+                        <div class="stat-number" style="font-size: 2rem; font-weight: 700;">30 Days</div>
+                        <div class="stat-label" style="opacity: 0.8;">Return Window</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" style="font-size: 2rem; font-weight: 700;">Free</div>
+                        <div class="stat-label" style="opacity: 0.8;">Return Shipping</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" style="font-size: 2rem; font-weight: 700;">24h</div>
+                        <div class="stat-label" style="opacity: 0.8;">Return Authorization</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" aria-labelledby="returns-title">
+            <div class="page-header" style="text-align: center; padding: 3rem 0;">
+                <h1 class="section-title" id="returns-title" style="font-size: 2.5rem; margin-bottom: 1rem;">Returns & Exchanges</h1>
+                <p class="lead" style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">We want you to be completely satisfied with your purchase. Our hassle-free return policy ensures you can shop with confidence.</p>
+            </div>
+
+            <!-- Quick Summary Cards -->
+            <div class="quick-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div class="summary-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; transition: transform 0.3s ease;">
+                    <div class="summary-icon" style="font-size: 2.5rem; color: #667eea; margin-bottom: 1rem;">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">30-Day Window</h3>
+                    <p style="color: #666;">Return within 30 days of delivery</p>
+                </div>
+                <div class="summary-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; transition: transform 0.3s ease;">
+                    <div class="summary-icon" style="font-size: 2.5rem; color: #667eea; margin-bottom: 1rem;">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Easy Process</h3>
+                    <p style="color: #666;">Start returns from your account</p>
+                </div>
+                <div class="summary-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; transition: transform 0.3s ease;">
+                    <div class="summary-icon" style="font-size: 2.5rem; color: #667eea; margin-bottom: 1rem;">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Free Exchanges</h3>
+                    <p style="color: #666;">For defective or wrong items</p>
+                </div>
+            </div>
+
+            <!-- Process Flow Visualization -->
+            <div class="process-flow">
+                <div class="flow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <h4>Initiate Return</h4>
+                    <p>Log in and select items to return</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h4>Get Label</h4>
+                    <p>Download prepaid return label</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h4>Ship Back</h4>
+                    <p>Drop off at carrier location</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>Receive Refund</h4>
+                    <p>Get refund within 5-10 days</p>
+                </div>
+            </div>
+
+            <!-- Policy Details with Enhanced Visuals -->
+            <article class="policy-grid enhanced">
+                <!-- Return Conditions -->
+                <div class="policy-section" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                    <div class="policy-header" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-check-circle" style="font-size: 1.5rem; color: #28a745; margin-right: 1rem;"></i>
+                        <h2 style="margin: 0;">Return Conditions</h2>
+                    </div>
+                    <p>To qualify for a return, items must meet the following criteria:</p>
+                    <ul class="interactive-checklist">
+                        <li>
+                            <i class="fas fa-check checklist-icon"></i>
+                            Unworn, unused, and in original condition
+                        </li>
+                        <li>
+                            <i class="fas fa-check checklist-icon"></i>
+                            All original tags and packaging intact
+                        </li>
+                        <li>
+                            <i class="fas fa-check checklist-icon"></i>
+                            Within 30 days of delivery date
+                        </li>
+                        <li>
+                            <i class="fas fa-check checklist-icon"></i>
+                            Accompanied by original receipt or order number
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- How to Start a Return -->
+                <div class="policy-section highlight" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 12px;">
+                    <div class="policy-header" style="display: flex; align-items: center; margin-bottom: 2rem;">
+                        <i class="fas fa-clipboard-check" style="font-size: 1.5rem; margin-right: 1rem;"></i>
+                        <h2 style="margin: 0;">How to Start a Return</h2>
+                    </div>
+                    <div class="steps-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div class="step" style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <div class="step-number" style="width: 40px; height: 40px; background: white; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">1</div>
+                            <h4 style="margin-bottom: 0.5rem;">Initiate Return</h4>
+                            <p>Log in to your account or email returns@shopeasy.com</p>
+                        </div>
+                        <div class="step" style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <div class="step-number" style="width: 40px; height: 40px; background: white; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">2</div>
+                            <h4 style="margin-bottom: 0.5rem;">Get Authorization</h4>
+                            <p>Receive prepaid shipping label within 24 hours</p>
+                        </div>
+                        <div class="step" style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <div class="step-number" style="width: 40px; height: 40px; background: white; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">3</div>
+                            <h4 style="margin-bottom: 0.5rem;">Ship & Track</h4>
+                            <p>Drop off package and track return status</p>
+                        </div>
+                        <div class="step" style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <div class="step-number" style="width: 40px; height: 40px; background: white; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">4</div>
+                            <h4 style="margin-bottom: 0.5rem;">Receive Refund</h4>
+                            <p>Refund processed within 5-10 business days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="policy-section" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                    <div class="policy-header" style="display: flex; align-items: center; margin-bottom: 2rem;">
+                        <i class="fas fa-question-circle" style="font-size: 1.5rem; color: #667eea; margin-right: 1rem;"></i>
+                        <h2 style="margin: 0;">Frequently Asked Questions</h2>
+                    </div>
+                    <div class="faq-accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                How long do refunds take to appear in my account?
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Refunds typically appear in your account within 5-10 business days after we receive and process your return. Credit card refunds may take an additional 3-5 business days to appear on your statement.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                What if I received a damaged or defective item?
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Contact us within 7 days of delivery with photos of the damaged item. We'll arrange a free replacement or refund and cover all shipping costs.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                Can I exchange for a different color or size?
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Yes! Request an exchange when initiating your return. If the replacement item is unavailable, we'll offer a refund or store credit for the full amount.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                Do I need to pay for return shipping?
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Returns due to our error or defective items include free return shipping. For other returns, a small shipping fee may be deducted from your refund.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Visualization -->
+                <div class="policy-section" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                    <div class="policy-header" style="display: flex; align-items: center; margin-bottom: 2rem;">
+                        <i class="fas fa-project-diagram" style="font-size: 1.5rem; color: #667eea; margin-right: 1rem;"></i>
+                        <h2 style="margin: 0;">Return Process Timeline</h2>
+                    </div>
+                    <div class="timeline-visual">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Day 1-30</h4>
+                                <p>Initiate your return within the 30-day window</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Within 24 Hours</h4>
+                                <p>Receive return authorization and shipping label</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Day 2-7</h4>
+                                <p>Ship items back to our facility</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Day 8-12</h4>
+                                <p>We inspect returned items</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Day 13-17</h4>
+                                <p>Refund processed and issued</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="cta-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem; border-radius: 12px; text-align: center; margin-top: 2rem;">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Need Help With Your Return?</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Our dedicated returns team is here to assist you every step of the way.</p>
+                    <div class="cta-buttons" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                        <a href="contact.html" class="btn btn-primary" style="padding: 1rem 2rem; background: #667eea; color: white; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+                            <i class="fas fa-headset"></i> Live Chat Support
+                        </a>
+                        <a href="mailto:returns@shopeasy.com" class="btn btn-secondary" style="padding: 1rem 2rem; background: white; color: #667eea; border: 2px solid #667eea; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+                            <i class="fas fa-envelope"></i> Email Returns Team
+                        </a>
+                    </div>
+                    <div class="contact-info" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                        <div class="contact-item">
+                            <i class="fas fa-phone" style="color: #667eea; margin-right: 0.5rem;"></i>
+                            <strong>Call:</strong> +1 (555) 123-4567
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock" style="color: #667eea; margin-right: 0.5rem;"></i>
+                            <strong>Hours:</strong> Mon-Fri 9AM-6PM EST
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-history" style="color: #667eea; margin-right: 0.5rem;"></i>
+                            <strong>Response Time:</strong> Within 2 hours
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer content remains the same -->
+    </footer>
+
+    <!-- Modals remain the same -->
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Enhanced JavaScript for interactivity -->
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                content.classList.toggle('active');
+                icon.classList.toggle('active');
+            });
+        });
+
+        // Interactive checklist
+        document.querySelectorAll('.interactive-checklist li').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.currentTarget.classList.toggle('checked');
+            });
+        });
+
+        // Animate cards on hover
+        document.querySelectorAll('.summary-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add current year to footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smooth scroll for back to top
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    <!-- Back to Top button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 2rem; right: 2rem; background: #667eea; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: none; z-index: 1000;">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', () => {
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'flex';
+                backToTopBtn.style.alignItems = 'center';
+                backToTopBtn.style.justifyContent = 'center';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Contact Page Enhancement Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-form-wrap {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+        
+        .form-input.error, .form-textarea.error {
+            border-color: #dc3545;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            margin: 0 0 0.25rem 0;
+            color: #333;
+        }
+        
+        .contact-text p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .hours-section {
+            margin-bottom: 2rem;
+        }
+        
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .hours-table tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .hours-table td {
+            padding: 0.75rem 0;
+        }
+        
+        .hours-table td:first-child {
+            font-weight: 500;
+        }
+        
+        .hours-table td:last-child {
+            text-align: right;
+            color: #666;
+        }
+        
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2rem;
+            height: 250px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .method-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .method-icon {
+            font-size: 2.5rem;
+            color: #6a11cb;
+            margin-bottom: 1rem;
+        }
+        
+        .method-btn {
+            margin-top: 1rem;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .method-btn:hover {
+            background: #2575fc;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #6a11cb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                gap: 2rem;
+            }
+            
+            .contact-form-wrap,
+            .contact-info {
+                padding: 1.5rem;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Header content remains the same -->
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Get in Touch</h1>
+                <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">We're here to help! Contact us for any questions, feedback, or support needs.</p>
+            </div>
+        </section>
+
+        <section class="container" aria-labelledby="contact-title">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrap">
+                    <h2 style="font-size: 2rem; margin-bottom: 2rem; color: #333;">Send us a Message</h2>
+                    
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                            <div class="error-message" id="name-error">Please enter your name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+                            <div class="error-message" id="email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="(123) 456-7890">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject *</label>
+                            <select id="subject" name="subject" class="form-input" required>
+                                <option value="">Select a subject</option>
+                                <option value="order">Order Inquiry</option>
+                                <option value="shipping">Shipping & Delivery</option>
+                                <option value="returns">Returns & Exchanges</option>
+                                <option value="product">Product Questions</option>
+                                <option value="account">Account Issues</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="subject-error">Please select a subject</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Your Message *</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="How can we help you?" required></textarea>
+                            <div class="error-message" id="message-error">Please enter your message</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                <span style="margin-left: 0.5rem;">Send me updates about new products and promotions</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span>Send Message</span>
+                            <div class="loader" id="form-loader"></div>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        
+                        <div class="success-message" id="success-message">
+                            <i class="fas fa-check-circle"></i> Thank you! Your message has been sent. We'll get back to you within 24 hours.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Visit Our Store</h4>
+                                <p>123 Minimal Street<br>Suite 100, New York, NY 10001</p>
+                                <p style="color: #6a11cb; margin-top: 0.5rem;"><i class="fas fa-directions"></i> Get Directions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 123-4567<br>+1 (555) 987-6543 (Support)</p>
+                                <p style="color: #6a11cb; margin-top: 0.5rem;"><i class="fas fa-phone"></i> Call Now</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Us</h4>
+                                <p>hello@shopeasy.com<br>support@shopeasy.com (Support)</p>
+                                <p style="color: #6a11cb; margin-top: 0.5rem;"><i class="fas fa-envelope"></i> Send Email</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hours-section">
+                        <h4>Business Hours</h4>
+                        <table class="hours-table">
+                            <tr>
+                                <td>Monday - Friday</td>
+                                <td>9:00 AM - 6:00 PM EST</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>10:00 AM - 4:00 PM EST</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>Closed</td>
+                            </tr>
+                            <tr>
+                                <td>Holidays</td>
+                                <td>Special Hours</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="map-container">
+                        <img src="assets/image/electronics.avif" alt="Store location map" class="map-placeholder">
+                        <div style="position: absolute; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <i class="fas fa-map-pin" style="color: #6a11cb;"></i> ShopEasy Store Location
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="contact-methods">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p>Chat instantly with our customer support team for quick answers to your questions.</p>
+                    <p><strong>Available:</strong> 24/7</p>
+                    <button class="method-btn">
+                        <i class="fas fa-comment-dots"></i> Start Live Chat
+                    </button>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Phone Support</h3>
+                    <p>Speak directly with our support agents during business hours.</p>
+                    <p><strong>Hours:</strong> Mon-Fri 9AM-6PM EST</p>
+                    <a href="tel:+15551234567" class="method-btn" style="text-decoration: none;">
+                        <i class="fas fa-phone-alt"></i> +1 (555) 123-4567
+                    </a>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>FAQ Center</h3>
+                    <p>Find quick answers to common questions in our comprehensive FAQ section.</p>
+                    <p><strong>Topics:</strong> Orders, Shipping, Returns & More</p>
+                    <a href="faq.html" class="method-btn" style="text-decoration: none;">
+                        <i class="fas fa-book-open"></i> Browse FAQs
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer content remains the same -->
+    </footer>
+
+    <!-- Modals remain the same -->
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Enhanced Contact Form JavaScript -->
+    <script>
+        // Form Validation and Submission
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formLoader = document.getElementById('form-loader');
+        const successMessage = document.getElementById('success-message');
+        
+        // Error handling
+        function showError(inputId, message) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(`${inputId}-error`);
+            
+            input.classList.add('error');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+        
+        function hideError(inputId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(`${inputId}-error`);
+            
+            input.classList.remove('error');
+            error.style.display = 'none';
+        }
+        
+        // Validation functions
+        function validateName() {
+            const name = document.getElementById('name').value.trim();
+            if (!name) {
+                showError('name', 'Please enter your name');
+                return false;
+            }
+            if (name.length < 2) {
+                showError('name', 'Name must be at least 2 characters');
+                return false;
+            }
+            hideError('name');
+            return true;
+        }
+        
+        function validateEmail() {
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!email) {
+                showError('email', 'Please enter your email');
+                return false;
+            }
+            if (!emailRegex.test(email)) {
+                showError('email', 'Please enter a valid email address');
+                return false;
+            }
+            hideError('email');
+            return true;
+        }
+        
+        function validateSubject() {
+            const subject = document.getElementById('subject').value;
+            if (!subject) {
+                showError('subject', 'Please select a subject');
+                return false;
+            }
+            hideError('subject');
+            return true;
+        }
+        
+        function validateMessage() {
+            const message = document.getElementById('message').value.trim();
+            if (!message) {
+                showError('message', 'Please enter your message');
+                return false;
+            }
+            if (message.length < 10) {
+                showError('message', 'Message must be at least 10 characters');
+                return false;
+            }
+            hideError('message');
+            return true;
+        }
+        
+        // Real-time validation
+        document.getElementById('name').addEventListener('blur', validateName);
+        document.getElementById('email').addEventListener('blur', validateEmail);
+        document.getElementById('subject').addEventListener('change', validateSubject);
+        document.getElementById('message').addEventListener('blur', validateMessage);
+        
+        // Form submission
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Validate all fields
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isSubjectValid = validateSubject();
+            const isMessageValid = validateMessage();
+            
+            if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            formLoader.style.display = 'inline-block';
+            submitBtn.querySelector('span').textContent = 'Sending...';
+            
+            // Simulate API call (replace with actual API endpoint)
+            setTimeout(() => {
+                // Reset form
+                contactForm.reset();
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset button state
+                submitBtn.disabled = false;
+                formLoader.style.display = 'none';
+                submitBtn.querySelector('span').textContent = 'Send Message';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        });
+        
+        // Add current year to footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'flex';
+                    backToTopBtn.style.alignItems = 'center';
+                    backToTopBtn.style.justifyContent = 'center';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+        }
+        
+        // Initialize phone input mask
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 3 && value.length <= 6) {
+                    value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+                } else if (value.length > 6) {
+                    value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+                }
+                e.target.value = value;
+            });
+        }
+    </script>
+
+    <!-- Back to Top button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top" style="position: fixed; bottom: 2rem; right: 2rem; background: #6a11cb; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: none; z-index: 1000;">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+</body>
+</html>

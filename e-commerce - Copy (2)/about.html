@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* About Page Enhancement Styles */
+        .about-hero-enhanced {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 0L0 0 598.97 114.72 1200 0z" fill="%23ffffff" opacity=".05"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content-enhanced {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-hero-enhanced h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+        
+        .hero-stats-enhanced {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stat-enhanced {
+            text-align: center;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-enhanced:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-number-enhanced {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label-enhanced {
+            font-size: 1rem;
+            opacity: 0.9;
+            display: block;
+        }
+        
+        .btn-scroll {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+        
+        .btn-scroll:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+        
+        .story-section {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .story-text-enhanced h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .story-text-enhanced h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .story-text-enhanced p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-image-enhanced {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+        
+        .story-image-enhanced img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .story-image-enhanced:hover img {
+            transform: scale(1.05);
+        }
+        
+        .story-caption-enhanced {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .story-image-enhanced:hover .story-caption-enhanced {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .values-section {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .values-grid-enhanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .value-card-enhanced {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card-enhanced:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+        
+        .value-card-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .value-icon-enhanced {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .value-icon-enhanced.quality {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .value-icon-enhanced.simplicity {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+        
+        .value-icon-enhanced.sustainability {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+        
+        .value-icon-enhanced.community {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+        
+        .value-card-enhanced h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .value-card-enhanced p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-points-enhanced {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .value-points-enhanced li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .value-points-enhanced li:last-child {
+            border-bottom: none;
+        }
+        
+        .value-points-enhanced li i {
+            color: #667eea;
+        }
+        
+        .sustainability-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .sustainability-metrics-enhanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .metric-enhanced {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-enhanced:hover {
+            transform: translateY(-10px);
+        }
+        
+        .metric-icon-enhanced {
+            font-size: 2.5rem;
+            color: #43e97b;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-enhanced h4 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .initiative-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .initiative-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .initiative-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .initiative-card h4 i {
+            color: #43e97b;
+        }
+        
+        .team-section {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .team-grid-enhanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member-enhanced {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .team-member-enhanced:hover {
+            transform: translateY(-15px);
+        }
+        
+        .member-image-enhanced {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .member-image-enhanced img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-member-enhanced:hover .member-image-enhanced img {
+            transform: scale(1.1);
+        }
+        
+        .member-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(102,126,234,0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .team-member-enhanced:hover .member-overlay {
+            opacity: 1;
+        }
+        
+        .member-social-enhanced {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member-enhanced:hover .member-social-enhanced {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .member-social-enhanced a {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .member-social-enhanced a:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .member-info-enhanced {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .member-info-enhanced h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .role {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .bio {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .timeline-section {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+        
+        .timeline-enhanced {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+            padding: 2rem 0;
+        }
+        
+        .timeline-enhanced::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item-enhanced {
+            position: relative;
+            width: 50%;
+            padding: 2rem;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .timeline-item-enhanced.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item-enhanced:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 4rem;
+        }
+        
+        .timeline-item-enhanced:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+        }
+        
+        .timeline-year-enhanced {
+            position: absolute;
+            top: 2rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+        
+        .timeline-item-enhanced:nth-child(odd) .timeline-year-enhanced {
+            right: -40px;
+        }
+        
+        .timeline-item-enhanced:nth-child(even) .timeline-year-enhanced {
+            left: -40px;
+        }
+        
+        .timeline-content-enhanced {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .timeline-content-enhanced::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg);
+        }
+        
+        .timeline-item-enhanced:nth-child(odd) .timeline-content-enhanced::after {
+            right: -10px;
+        }
+        
+        .timeline-item-enhanced:nth-child(even) .timeline-content-enhanced::after {
+            left: -10px;
+        }
+        
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+        
+        .newsletter-signup {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-stats-enhanced {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .timeline-enhanced::before {
+                left: 30px;
+            }
+            
+            .timeline-item-enhanced {
+                width: 100%;
+                padding: 1rem 1rem 1rem 4rem;
+                text-align: left !important;
+                left: 0 !important;
+            }
+            
+            .timeline-item-enhanced:nth-child(odd) .timeline-year-enhanced,
+            .timeline-item-enhanced:nth-child(even) .timeline-year-enhanced {
+                left: 10px;
+                right: auto;
+                width: 60px;
+                height: 60px;
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo" aria-label="ShopEasy Home">
+                    <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                    ShopEasy
+                </a>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search for products..." aria-label="Search products">
+                    <button id="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <a href="#" id="wishlist-btn" aria-label="Wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count" aria-live="polite">0</span>
+                    </a>
+                    <a href="#" id="cart-btn" class="cart" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" aria-live="polite">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav aria-label="Main Navigation">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Team Wear <i class="fa fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Team Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/team-wear-1.jpg" alt="Team Jerseys">
+                                        <h4>Team Jerseys</h4>
+                                        <p>Premium quality custom jerseys</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/team-wear-2.jpg" alt="Team Shorts">
+                                        <h4>Team Shorts</h4>
+                                        <p>Comfortable and durable shorts</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/team-wear-3.jpg" alt="Team Accessories">
+                                        <h4>Team Accessories</h4>
+                                        <p>Caps, bands, and more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Active Wear <i class="fas fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Active Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/active-wear-1.jpg" alt="Sports Tops">
+                                        <h4>Sports Tops</h4>
+                                        <p>Breathable athletic wear</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/active-wear-2.jpg" alt="Leggings">
+                                        <h4>Leggings & Pants</h4>
+                                        <p>Flexible and comfortable fit</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/active-wear-3.jpg" alt="Activewear Accessories">
+                                        <h4>Accessories</h4>
+                                        <p>Bags, socks, and more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Casual Wear <i class="fas fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Casual Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/casual-wear-1.jpg" alt="T-Shirts">
+                                        <h4>T-Shirts</h4>
+                                        <p>Classic and trendy designs</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/casual-wear-2.jpg" alt="Casual Bottoms">
+                                        <h4>Casual Bottoms</h4>
+                                        <p>Jeans, pants, and shorts</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/casual-wear-3.jpg" alt="Casual Accessories">
+                                        <h4>Accessories</h4>
+                                        <p>Hats, belts, and more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="mega-menu-trigger">Hunters Wear <i class="fas fa-angle-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <h3>Hunters Wear Collections</h3>
+                                <div class="mega-menu-grid">
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/hunters-wear-1.jpg" alt="Hunting Jackets">
+                                        <h4>Hunting Jackets</h4>
+                                        <p>Durable and weather-resistant</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/hunters-wear-2.jpg" alt="Hunting Pants">
+                                        <h4>Hunting Pants</h4>
+                                        <p>Camouflage and tactical</p>
+                                    </div>
+                                    <div class="mega-menu-item">
+                                        <img src="assets/image/hunters-wear-3.jpg" alt="Hunting Gear">
+                                        <h4>Hunting Gear</h4>
+                                        <p>Boots, vests, and equipment</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="product-details.html"><i class="fas fa-eye"></i> Products</a></li>
+                    <li><a href="checkout.html"><i class="fas fa-shopping-cart"></i> Checkout</a></li>
+                </ul>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-menu-overlay"></div>
+            <div class="mobile-menu-container">
+                <div class="mobile-menu-header">
+                    <h3>Menu</h3>
+                    <button class="mobile-menu-close" aria-label="Close mobile menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mobile-menu-content">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-tshirt"></i> Team Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-shield-alt"></i> Team Jerseys</a>
+                            <a href="#"><i class="fas fa-vest"></i> Team Shorts</a>
+                            <a href="#"><i class="fas fa-hat-cowboy"></i> Team Accessories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-running"></i> Active Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-tshirt"></i> Sports Tops</a>
+                            <a href="#"><i class="fas fa-vest"></i> Leggings & Pants</a>
+                            <a href="#"><i class="fas fa-bag-shopping"></i> Accessories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-user"></i> Casual Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-tshirt"></i> T-Shirts</a>
+                            <a href="#"><i class="fas fa-jeans"></i> Casual Bottoms</a>
+                            <a href="#"><i class="fas fa-hat-cowboy"></i> Accessories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-mega-menu-item">
+                        <a href="#" class="mobile-mega-menu-trigger">
+                            <i class="fas fa-campground"></i> Hunters Wear <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mobile-mega-menu">
+                            <a href="#"><i class="fas fa-vest"></i> Hunting Jackets</a>
+                            <a href="#"><i class="fas fa-jeans"></i> Hunting Pants</a>
+                            <a href="#"><i class="fas fa-boot"></i> Hunting Gear</a>
+                        </div>
+                    </div>
+                    
+                    <a href="product-details.html"><i class="fas fa-eye"></i> Products</a>
+                    <a href="checkout.html"><i class="fas fa-shopping-cart"></i> Checkout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero-enhanced">
+            <div class="container">
+                <div class="hero-content-enhanced">
+                    <h1>About ShopEasy</h1>
+                    <p class="tagline">Design-forward essentials, delivered simply.</p>
+                    <p class="hero-description">
+                        We curate minimalist everyday essentials — clothing and lifestyle products crafted for durability, 
+                        comfort, and timeless style. Our mission is to make premium design accessible without the noise.
+                    </p>
+                    <a href="#story" class="btn-scroll">
+                        <i class="fas fa-chevron-down"></i> Explore Our Story
+                    </a>
+                </div>
+                
+                <div class="hero-stats-enhanced">
+                    <div class="stat-enhanced">
+                        <span class="stat-number-enhanced">50K+</span>
+                        <span class="stat-label-enhanced">Happy Customers Worldwide</span>
+                    </div>
+                    <div class="stat-enhanced">
+                        <span class="stat-number-enhanced">100+</span>
+                        <span class="stat-label-enhanced">Premium Products</span>
+                    </div>
+                    <div class="stat-enhanced">
+                        <span class="stat-number-enhanced">5</span>
+                        <span class="stat-label-enhanced">Years of Excellence</span>
+                    </div>
+                    <div class="stat-enhanced">
+                        <span class="stat-number-enhanced">30+</span>
+                        <span class="stat-label-enhanced">Countries Served</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section id="story" class="story-section">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-text-enhanced">
+                        <h2>Our Story</h2>
+                        <p>
+                            Founded in 2019, ShopEasy began with a simple idea: quality shouldn't be complicated. 
+                            What started as a small online store has grown into a trusted destination for minimalist, 
+                            high-quality essentials.
+                        </p>
+                        <p>
+                            We believe in transparent pricing, ethical manufacturing, and products that stand the 
+                            test of time. Every item in our collection is carefully selected or designed to meet 
+                            our strict standards of quality and sustainability.
+                        </p>
+                        <p>
+                            Our journey has been guided by our customers' feedback, constantly evolving to meet 
+                            your needs while staying true to our core values of simplicity, quality, and 
+                            sustainability.
+                        </p>
+                    </div>
+                    <div class="story-image-enhanced">
+                        <img src="assets/image/about-story.jpg" alt="ShopEasy founder story" loading="lazy">
+                        <div class="story-caption-enhanced">Our first physical store opening, 2020</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Core Values</h2>
+                    <p>Guiding principles that shape everything we do</p>
+                </div>
+                
+                <div class="values-grid-enhanced">
+                    <div class="value-card-enhanced">
+                        <div class="value-icon-enhanced quality">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Quality First</h3>
+                        <p>
+                            Built to last with thoughtful materials and craftsmanship. We test every product 
+                            rigorously before it reaches you.
+                        </p>
+                        <ul class="value-points-enhanced">
+                            <li><i class="fas fa-check"></i> Premium materials sourced ethically</li>
+                            <li><i class="fas fa-check"></i> Rigorous quality testing</li>
+                            <li><i class="fas fa-check"></i> Long-lasting, timeless design</li>
+                            <li><i class="fas fa-check"></i> Industry-leading durability standards</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="value-card-enhanced">
+                        <div class="value-icon-enhanced simplicity">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Simplicity</h3>
+                        <p>
+                            Minimal design, maximum utility. We eliminate the unnecessary to focus on what truly matters.
+                        </p>
+                        <ul class="value-points-enhanced">
+                            <li><i class="fas fa-check"></i> Clean, uncluttered designs</li>
+                            <li><i class="fas fa-check"></i> Intuitive functionality</li>
+                            <li><i class="fas fa-check"></i> Timeless aesthetic</li>
+                            <li><i class="fas fa-check"></i> Streamlined user experience</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="value-card-enhanced">
+                        <div class="value-icon-enhanced sustainability">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3>Sustainability</h3>
+                        <p>
+                            We partner with suppliers mindful of environmental impact and prioritize eco-friendly materials.
+                        </p>
+                        <ul class="value-points-enhanced">
+                            <li><i class="fas fa-check"></i> Eco-friendly, renewable materials</li>
+                            <li><i class="fas fa-check"></i> Ethical manufacturing partners</li>
+                            <li><i class="fas fa-check"></i> Carbon-neutral shipping</li>
+                            <li><i class="fas fa-check"></i> Sustainable packaging</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="value-card-enhanced">
+                        <div class="value-icon-enhanced community">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community</h3>
+                        <p>
+                            Building relationships with our customers and giving back to the communities we serve.
+                        </p>
+                        <ul class="value-points-enhanced">
+                            <li><i class="fas fa-check"></i> Transparent business practices</li>
+                            <li><i class="fas fa-check"></i> Local community partnerships</li>
+                            <li><i class="fas fa-check"></i> Charitable initiatives</li>
+                            <li><i class="fas fa-check"></i> Customer-driven improvements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Section -->
+        <section class="sustainability-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Sustainability Commitment</h2>
+                    <p>Our pledge to people and planet</p>
+                </div>
+                
+                <div class="sustainability-metrics-enhanced">
+                    <div class="metric-enhanced">
+                        <div class="metric-icon-enhanced">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h4>85%</h4>
+                        <p>Recycled Packaging Materials</p>
+                    </div>
+                    <div class="metric-enhanced">
+                        <div class="metric-icon-enhanced">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>100%</h4>
+                        <p>Organic Cotton Products</p>
+                    </div>
+                    <div class="metric-enhanced">
+                        <div class="metric-icon-enhanced">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h4>40%</h4>
+                        <p>Water Reduction in Production</p>
+                    </div>
+                    <div class="metric-enhanced">
+                        <div class="metric-icon-enhanced">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h4>Carbon Neutral</h4>
+                        <p>Shipping & Operations</p>
+                    </div>
+                </div>
+                
+                <div class="initiatives-grid">
+                    <div class="initiative-card">
+                        <h4><i class="fas fa-seedling"></i> Eco-Friendly Materials</h4>
+                        <p>Using organic cotton, recycled polyester, and sustainable alternatives in all our products.</p>
+                    </div>
+                    <div class="initiative-card">
+                        <h4><i class="fas fa-truck"></i> Green Logistics</h4>
+                        <p>Carbon-neutral shipping options and optimized delivery routes to reduce emissions.</p>
+                    </div>
+                    <div class="initiative-card">
+                        <h4><i class="fas fa-handshake"></i> Ethical Partnerships</h4>
+                        <p>Working exclusively with factories that provide fair wages and safe working conditions.</p>
+                    </div>
+                    <div class="initiative-card">
+                        <h4><i class="fas fa-tree"></i> Reforestation Program</h4>
+                        <p>Planting trees for every order placed through our partnership with One Tree Planted.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Meet Our Leadership Team</h2>
+                    <p>The passionate people behind ShopEasy</p>
+                </div>
+                
+                <div class="team-grid-enhanced">
+                    <div class="team-member-enhanced">
+                        <div class="member-image-enhanced">
+                            <img src="assets/image/alex.jpg" alt="Alex Morgan, Founder & CEO">
+                            <div class="member-overlay"></div>
+                            <div class="member-social-enhanced">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info-enhanced">
+                            <h4>Alex Morgan</h4>
+                            <span class="role">Founder & CEO</span>
+                            <p class="bio">
+                                With 15+ years in fashion retail, Alex founded ShopEasy to simplify online 
+                                shopping for quality essentials. Passionate about sustainable fashion.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member-enhanced">
+                        <div class="member-image-enhanced">
+                            <img src="assets/image/sara.jpg" alt="Sara Lee, Head of Design">
+                            <div class="member-overlay"></div>
+                            <div class="member-social-enhanced">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="Portfolio"><i class="fas fa-briefcase"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info-enhanced">
+                            <h4>Sara Lee</h4>
+                            <span class="role">Head of Design</span>
+                            <p class="bio">
+                                Former fashion director with a passion for minimalist design and sustainable 
+                                materials. Leads our product development and design team.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member-enhanced">
+                        <div class="member-image-enhanced">
+                            <img src="assets/image/rahul.jpg" alt="Rahul Patel, Operations Director">
+                            <div class="member-overlay"></div>
+                            <div class="member-social-enhanced">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info-enhanced">
+                            <h4>Rahul Patel</h4>
+                            <span class="role">Operations Director</span>
+                            <p class="bio">
+                                Supply chain expert ensuring efficient operations and sustainable logistics. 
+                                Over 12 years of experience in e-commerce operations.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member-enhanced">
+                        <div class="member-image-enhanced">
+                            <img src="assets/image/maria.jpg" alt="Maria Garcia, Customer Experience Lead">
+                            <div class="member-overlay"></div>
+                            <div class="member-social-enhanced">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info-enhanced">
+                            <h4>Maria Garcia</h4>
+                            <span class="role">Customer Experience Lead</span>
+                            <p class="bio">
+                                Dedicated to creating exceptional shopping experiences and building customer 
+                                relationships. Leads our customer support and experience teams.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Journey</h2>
+                    <p>Key milestones in our growth and evolution</p>
+                </div>
+                
+                <div class="timeline-enhanced">
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-year-enhanced">2019</div>
+                        <div class="timeline-content-enhanced">
+                            <h4>Founded ShopEasy</h4>
+                            <p>Launched as an online store with 20 curated minimalist products</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-year-enhanced">2020</div>
+                        <div class="timeline-content-enhanced">
+                            <h4>First Physical Store</h4>
+                            <p>Opened flagship store in New York City, expanding our physical presence</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-year-enhanced">2021</div>
+                        <div class="timeline-content-enhanced">
+                            <h4>Sustainability Initiative</h4>
+                            <p>Committed to 100% sustainable packaging and carbon-neutral operations</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-year-enhanced">2022</div>
+                        <div class="timeline-content-enhanced">
+                            <h4>International Expansion</h4>
+                            <p>Started shipping to 30+ countries worldwide</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-year-enhanced">2023</div>
+                        <div class="timeline-content-enhanced">
+                            <h4>Mobile App Launch</h4>
+                            <p>Released ShopEasy app for iOS and Android, enhancing mobile shopping experience</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-year-enhanced">2024</div>
+                        <div class="timeline-content-enhanced">
+                            <h4>Carbon Neutral Achievement</h4>
+                            <p>Fully achieved carbon-neutral operations across all business areas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Join Our Community</h2>
+                    <p>
+                        Be part of our journey toward sustainable, minimalist living. 
+                        Discover our collections and experience the ShopEasy difference.
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="collections.html" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i> Shop Our Collections
+                        </a>
+                        <a href="contact.html" class="btn-secondary">
+                            <i class="fas fa-envelope"></i> Get In Touch
+                        </a>
+                    </div>
+                    
+                    <div class="newsletter-signup">
+                        <h3>Stay Connected</h3>
+                        <p>Subscribe to our newsletter for updates on new arrivals, exclusive offers, and sustainability initiatives.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                        <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">
+                            By subscribing, you agree to our Privacy Policy
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ShopEasy</h3>
+                    <p>Minimalist online shopping for quality essentials. Curated collections, premium materials, timeless design.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product-details.html">Products</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="collections.html">Collections</a></li>
+                        <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Information</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="returns-exchanges.html">Returns & Exchanges</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Minimal Street</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> hello@shopeasy.com</li>
+                    </ul>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" title="PayPal"></i>
+                        <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="cart-modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cart-total-price">0.00</span></h3>
+                <a href="checkout.html" class="btn" id="checkout-btn">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="wishlist-modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Wishlist</h2>
+            <div id="wishlist-items"></div>
+        </div>
+    </div>
+
+    <!-- Back to Top button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Enhanced JavaScript -->
+    <script>
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item-enhanced');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = newsletterForm.querySelector('input[type="email"]').value;
+                
+                if (email) {
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.style.background = 'rgba(255,255,255,0.9)';
+                    successMsg.style.color = '#667eea';
+                    successMsg.style.padding = '1rem';
+                    successMsg.style.borderRadius = '10px';
+                    successMsg.style.marginTop = '1rem';
+                    successMsg.style.textAlign = 'center';
+                    successMsg.innerHTML = `
+                        <i class="fas fa-check-circle"></i> 
+                        Thank you! You've been subscribed to our newsletter.
+                    `;
+                    
+                    newsletterForm.parentNode.insertBefore(successMsg, newsletterForm.nextSibling);
+                    newsletterForm.reset();
+                    
+                    // Remove message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 5000);
+                }
+            });
+        }
+        
+        // Add current year to footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'flex';
+                    backToTopBtn.style.alignItems = 'center';
+                    backToTopBtn.style.justifyContent = 'center';
+                    backToTopBtn.style.position = 'fixed';
+                    backToTopBtn.style.bottom = '2rem';
+                    backToTopBtn.style.right = '2rem';
+                    backToTopBtn.style.background = '#667eea';
+                    backToTopBtn.style.color = 'white';
+                    backToTopBtn.style.border = 'none';
+                    backToTopBtn.style.width = '50px';
+                    backToTopBtn.style.height = '50px';
+                    backToTopBtn.style.borderRadius = '50%';
+                    backToTopBtn.style.cursor = 'pointer';
+                    backToTopBtn.style.zIndex = '1000';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+        }
+        
+        // Animate stats on scroll
+        const stats = document.querySelectorAll('.stat-number-enhanced');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stat = entry.target;
+                    const targetValue = parseInt(stat.textContent);
+                    const duration = 2000; // Animation duration in milliseconds
+                    const step = targetValue / (duration / 16); // 60fps
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= targetValue) {
+                            stat.textContent = targetValue.toLocaleString() + (stat.textContent.includes('+') ? '+' : '');
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current).toLocaleString();
+                        }
+                    }, 16);
+                    
+                    statObserver.unobserve(stat);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        stats.forEach(stat => {
+            statObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>
